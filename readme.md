@@ -1,1 +1,1 @@
-![screenshot](https://raw.githubusercontent.com/jeremyshantz/data-browser/master/screenshot.png"screenshot")
+![screenshot](https://raw.githubusercontent.com/jeremyshantz/data-browser/master/screenshot.png "screenshot")
