@@ -58,7 +58,7 @@ shinyServer(
         })
         
         # output the geo points as a data table
-        output$locations <- renderTable({
+        output$locations <- renderDataTable ({
             if ( length(input$opts) == 0 ) {
                 NULL
             } else {
