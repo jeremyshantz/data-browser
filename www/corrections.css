@@ -7,3 +7,9 @@ TR.odd TD {
     color:gray;
     background-color:gray;
 }
+
+.gm-style-iw {
+    color:black;
+    font-size:larger;
+    font-weight: bold;
+}

@@ -5,8 +5,8 @@
 #   in the District drop down list..
 # The selection of the Distric second drop down list changes the map by 
 #   calculating a random sample of geo points in the selected district and 
-#   generating a plot. If the checbox is checked, a table of the sample is 
-#   also displayed.
+#   generating a plot. If the checkbox is checked, a table of the sample data 
+#   is also displayed.
 
 library(shiny)
 library(googleVis)
@@ -15,7 +15,7 @@ library(dplyr)
 # Load our dataset
 address <- read.csv('AddressPoints.csv')
 
-# Concatenate lat angd long 
+# Concatenate lat and long 
 address$latlong <- paste(address$LATITUDE, address$LONGITUDE, sep=":")
 
 # Clean for display
@@ -81,7 +81,6 @@ shinyServer(
         # Display the name of the selection district
         output$selecteddistrict <- renderText({  
            input$district
-        })  
-         
+        })
     }
 )

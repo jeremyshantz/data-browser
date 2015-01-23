@@ -2,7 +2,6 @@
 # UI.R
 # The ui has three forms of widget input: two selectInputs, a slider, and a checkbox.
 # It also outputs text, html, and a table.
-#
 
 library(shiny)
 
@@ -27,7 +26,8 @@ shinyUI(fluidPage(
             ' and ',
             tags$a('Shiny', href='http://shiny.rstudio.com/'),
             ' using data from ',
-            tags$a('Open Data - City of Waterloo', href='http://www.waterloo.ca/en/opendata/'), '.'
+            tags$a('Open Data - City of Waterloo', href='http://www.waterloo.ca/en/opendata/'), '.', 
+            tags$a('View the source', href='https://github.com/jeremyshantz/data-browser'), '.'
         )
     ),
     
