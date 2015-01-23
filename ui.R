@@ -27,7 +27,7 @@ shinyUI(fluidPage(
             tags$a('Shiny', href='http://shiny.rstudio.com/'),
             ' using data from ',
             tags$a('Open Data - City of Waterloo', href='http://www.waterloo.ca/en/opendata/'), '.', 
-            tags$a('View the source', href='https://github.com/jeremyshantz/data-browser'), '.'
+            tags$a('View the source on GitHub', href='https://github.com/jeremyshantz/data-browser'), '.'
         )
     ),
     
@@ -44,7 +44,7 @@ shinyUI(fluidPage(
                     p('2. Choose a neighbourhood in the ward')
              ),
              column(3,
-                    sliderInput('points', 'Address Sample Size', value = 100, min = 1, max = 400, step = 1),
+                    sliderInput('samplesize', 'Address Sample Size', value = 100, min = 1, max = 400, step = 1),
                     p('3. Slide to adjust the number of addresses to show from this neighbourhood')
              ),
              column(2,
@@ -52,7 +52,7 @@ shinyUI(fluidPage(
                     p('4. View the addresses in a table (below the map)')
              ),
              column(3,
-                    p(''),
+                    tags$p( textOutput('sampletext'), class='bg-warning'),
                     p('')
              )
     ),

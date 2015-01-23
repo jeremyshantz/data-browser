@@ -13,3 +13,8 @@ TR.odd TD {
     font-size:larger;
     font-weight: bold;
 }
+
+#sampletext {
+  color:  #00bc8c;
+  font-size: larger;
+}

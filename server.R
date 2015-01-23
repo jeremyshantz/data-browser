@@ -40,13 +40,14 @@ shinyServer(
             updateSelectizeInput(session, 'district', choices = district, server = FALSE)
         })
         
-        # Calculates geo points in the district, randomly sampling them based on input$points
+        # Calculates geo points in the district, randomly sampling them based on input$samplesize
         # Shared method called by renderGvis and renderTable
         getData <- reactive({
             
             neighbourhood <- address[address$District == input$district,]
+            population <- nrow(neighbourhood)
             
-            n <- input$points
+            n <- input$samplesize
             len <- nrow(neighbourhood) 
             if (len < n) {
                 n <- len  - 1
@@ -54,7 +55,7 @@ shinyServer(
             
             neighbourhood <- neighbourhood[sample(1:len, n), ]
             row.names(neighbourhood) <- NULL
-            neighbourhood
+            return(list(data = neighbourhood, population = population))
         })
         
         # output the geo points as a data table
@@ -62,15 +63,15 @@ shinyServer(
             if ( length(input$opts) == 0 ) {
                 NULL
             } else {
-                getData()    
+                getData()$data    
             }
         })
         
         # output the geo points as a map
         output$map <- renderGvis({ 
-            gvisMap(getData(), "Coordinates" , "Address", 
+            gvisMap(getData()$data, "Coordinates" , "Address", 
                         options=list(showTip=TRUE, 
-                                     showLine=TRUE, 
+                                     showLine=TRUE,
                                      lineWidth = 70,
                                      height='900',
                                      enableScrollWheel=TRUE,
@@ -80,7 +81,30 @@ shinyServer(
         
         # Display the name of the selection district
         output$selecteddistrict <- renderText({  
-           input$district
+            input$district
+        })
+        
+        # Display statement about the sample size of the population
+        output$sampletext <- renderText({  
+            
+            population <- getData()$population;
+            
+            if (population > 0) {
+                
+                n <- input$samplesize
+                
+                if (n > population) {
+                    n <- population
+                }
+                
+                percent <- 100 * (n / population)
+                percent <- round(percent, digits=0)
+                percent <- paste(percent, '%', sep='')
+                
+                return(paste('Showing', percent, 'of', population, 'addresses in this neighbourhood.'))
+            } else {
+                return('')
+            }
         })
     }
 )
