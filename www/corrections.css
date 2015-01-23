@@ -1,0 +1,9 @@
+
+TR.odd {
+    color:red;
+}
+
+TR.odd TD {
+    color:gray;
+    background-color:gray;
+}

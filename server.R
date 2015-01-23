@@ -72,6 +72,7 @@ shinyServer(
                         options=list(showTip=TRUE, 
                                      showLine=TRUE, 
                                      lineWidth = 70,
+                                     height='900',
                                      enableScrollWheel=TRUE,
                                      mapType='hybrid', 
                                      useMapTypeControl=TRUE))
